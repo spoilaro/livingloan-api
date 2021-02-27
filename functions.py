@@ -1,6 +1,6 @@
 import datetime as dt
 
-def calculate_loan():
+def calculate_loan(budget):
 
     ONEMONTH_LOAN = 655
     should_have_loan = 0
@@ -16,10 +16,12 @@ def calculate_loan():
     current_day = int(dt.datetime.now().strftime("%d"))
     should_have_loan += (ONEMONTH_LOAN / 30) * (30 - current_day)
 
-    should_have_loan = round(should_have_loan, 2)
+    result = round(budget - should_have_loan, 2)
 
-    print(should_have_loan)
+    return result
 
-calculate_loan()
+
+if __name__ == "__main__":
+    print(calculate_loan(2000))
 
 

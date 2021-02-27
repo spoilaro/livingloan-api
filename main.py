@@ -1,22 +1,27 @@
 import flask
 from flask import request
+import datetime as dt
+from functions import calculate_loan
+
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = True
 
 
+
+
 @app.route('/', methods=['GET'])
-def home():
+def loan():
 
-    value = 0
+    budget = 0
 
-    if "id" in request.args:
-        value = int(request.args["id"])
+    if "budget" in request.args:
+        budget = int(request.args["budget"])
+    
+    result = calculate_loan(budget)
 
     data = {
-        "someValue": "goo@.com",
-        "otherValue": "foo@.com",
-        "budget": value
+        "result": result
     }
 
     return data
